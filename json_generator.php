@@ -6,7 +6,7 @@ $reptiles = array(
         "Species" => array(
             "Turtle" => array(
                 "name" => "Green Sea Turtle",
-                "info" => "The green turtle is one of the largest sea turtles and the only herbivore among the different species.",
+                "info" => "Green turtles are in fact named for the greenish color of their cartilage and fat, not their shells. In the Eastern Pacific, a group of green turtles that have darker shells are called black turtles by the local community.",
                 "lifespan" => "70 to 90 years",
                 "eggs" => "110 eggs",
                 "diet" => array(
@@ -120,7 +120,7 @@ $reptiles = array(
             ),
             "Alligator" => array(
                 "name" => "American Alligator",
-                "info" => "American alligators are large crocodilians found only in the United States.",
+                "info" => "American alligators are large crocodilians found only in the United States. The animal’s dark skin is armored with small, bony scales called scutes.",
                 "lifespan" => "30 to 50 years",
                 "eggs" => "35 to 50 eggs",
                 "diet" => array(
