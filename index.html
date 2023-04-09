@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+        <div>
+          <a href="#" onclick="back()"><button class="btn btn-lg text-center" id="button"></button></a>
+        </div>
+    <h1 id="demo">Reptiles</h1>
+    <div class="main-card">
+        <div class="cards" id="cards">
+          <div class="card" id="card1">
+          </div>
+          <div class="card" id="card2">
+          </div>
+          <div class="card" id="card3">
+          </div>
+          <div class="card" id="card4">
+          </div>
+          <div class="card" id="card5">
+          </div>
+          <div class="card" id="card6">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js" integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN+qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+<script>
+    
+
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "http://localhost/JSON_GENERATOR/json_generator.php");
+    xmlhttp.send();
+    xmlhttp.onload = function() {
+        var j=0;
+        var reptiles = JSON.parse(this.responseText).reptiles;
+        for(const key in reptiles){
+        j += 1;
+        var items = document.getElementById(`card${j}`);
+        var row =`
+            <div class="content" id="img${j}">
+            <a href="#" onclick="myFunction(${j},'${key}')"><div class="img" >
+                <img src="${reptiles[key].image}" alt="">
+            </div></a>
+            <div class="details">
+                <div class="name" id="name${j}">${key}</div>
+            </div>
+            </div>
+        `;
+        items.innerHTML = row;
+        item1 = document.getElementById(`card5`);
+        item2 = document.getElementById(`card6`);
+        item1.style.display = "none";
+        item2.style.display = "none";
+        }
+    }
+
+
+    function myFunction(id,ky) {
+        xmlhttp.open("GET", "http://localhost/JSON_GENERATOR/json_generator.php");
+        xmlhttp.send();
+        xmlhttp.onload = function() {
+            var j = 0;
+            var k = 5;
+            var item;
+            var hidden = 0;
+            var reptiles = JSON.parse(this.responseText).reptiles;
+            for (const key in reptiles) {
+                j++;
+                trans = 
+                card5 = 
+                card6 = 
+                disp = document.getElementById(`card${j}`);
+
+                document.getElementById(`card5`).style.width = "calc(100% / 2 - 20px)";
+                document.getElementById(`card6`).style.width = "calc(100% / 2 - 20px)";
+                document.getElementById(`cards`).style.height = "405px";
+                document.getElementById(`button`).style.display = "block";
+                disp.style.display = "none";
+            }
+            document.getElementById(`demo`).innerHTML = ky;
+            document.getElementById(`button`).innerHTML =`<span><i class="fa fa-arrow-left fa-3x"></i></span>`;
+            for (const key in reptiles[ky]["Species"]) {
+                j ++;
+                item = document.getElementById(`card${k}`);
+                item.style.display = "block";
+                var row =`
+                    <div class="content" id="img${k}">
+                        <a href="#"><div class="img" >
+                            <img src="${reptiles[ky]["Species"][key].image}" alt="">
+                        </div></a>
+                        <div class="media-icons">
+                            <a data-toggle="collapse" href="#collapseInfo${k}" aria-expanded="true" aria-controls="collapseInfo${k}"><i class="fa-solid fa-info"></i></a>
+                            <a data-toggle="collapse" href="#collapseLifespan${k}" aria-expanded="true" aria-controls="collapseLifespan${k}"><i class="fa-solid fa-heart-pulse"></i></a>
+                            <a data-toggle="collapse" href="#collapseEggs${k}" aria-expanded="true" aria-controls="collapseEggs${k}"><i class="fa-solid fa-egg"></i></a>
+                            <a data-toggle="collapse" href="#collapseSize${k}" aria-expanded="true" aria-controls="collapseSize${k}"><i class="fa-solid fa-ruler"></i></a>
+                            <a data-toggle="collapse" href="#collapseDiet${k}" aria-expanded="true" aria-controls="collapseDiet${k}"><i class="fa-solid fa-drumstick-bite"></i></a>
+                        </div>
+                        <div class="details">
+                            <div class="name">${reptiles[ky]["Species"][key].name}</div>
+                            
+                            <div class="accordion" id="accordion${k}">
+                                <div id="collapseInfo${k}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion${k}">
+                                    <div class="card-body">
+                                        ${reptiles[ky]["Species"][key].info}
+                                    </div>
+                                </div>
+
+                                <div id="collapseLifespan${k}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion${k}">
+                                    <div class="card-body"> 
+                                        Average Life Span
+                                        <div class="others">${reptiles[ky]["Species"][key].lifespan}</div>
+                                    </div>
+                                </div>
+                                <div id="collapseEggs${k}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion${k}">
+                                    <div class="card-body">
+                                        Clutch size
+                                        <div class="others">${reptiles[ky]["Species"][key].eggs}</div>
+                                    </div>
+                                </div>
+                                <div id="collapseSize${k}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion${k}">
+                                    <div class="card-body">
+                                        ${ reptiles[ky]["Species"][key]["size"]["male"] ?
+                                        `Male Size and Weight
+                                        <div class="others">${reptiles[ky]["Species"][key]["size"]["male"].length}
+                                        | ${reptiles[ky]["Species"][key]["size"]["male"].weight}</div>
+                                        Female Size and Weight
+                                        <div class="others">${reptiles[ky]["Species"][key]["size"]["female"].length}
+                                        | ${reptiles[ky]["Species"][key]["size"]["female"].weight}</div>`
+                                        :
+                                        `Size and Weight
+                                        <div class="others">${reptiles[ky]["Species"][key]["size"][0].length}</div>
+                                        <div class="others">${reptiles[ky]["Species"][key]["size"][0].weight}</div>
+                                        `}
+                                    </div>
+                                </div>
+                                <div id="collapseDiet${k}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion${k}">
+                                    <div class="card-body">
+                                    <ul>
+                                        <dt>Diet</dt>
+                                        ${reptiles[ky]["Species"][key]["diet"][0]},
+                                        ${reptiles[ky]["Species"][key]["diet"][1]},
+                                        ${reptiles[ky]["Species"][key]["diet"][2]},
+                                        ${reptiles[ky]["Species"][key]["diet"][3]},
+                                        ${reptiles[ky]["Species"][key]["diet"][4]}
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                item.innerHTML = row;
+                k ++;
+            }
+        }
+    }
+
+    function back(){
+        document.getElementById(`cards`).style.height = "";
+        document.getElementById(`demo`).innerHTML = "Reptiles";
+        document.getElementById(`card1`).style.display = "block";
+        document.getElementById(`card2`).style.display = "block";
+        document.getElementById(`card3`).style.display = "block"; 
+        document.getElementById(`card4`).style.display = "block";
+        document.getElementById(`card5`).style.display = "none";
+        document.getElementById(`card6`).style.display = "none";
+        document.getElementById(`button`).style.display = "none";
+    }
+
+</script>
+</html>
+ 
